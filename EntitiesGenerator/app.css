@@ -1,0 +1,76 @@
+.form{
+    width:33%; 
+    display:inline-block; 
+    vertical-align:top;
+    padding-left:2%;
+    padding-top:2%;
+}
+.tableForm{
+    border-collapse:separate; 
+    border-spacing: 0px 8px;
+}
+.data{
+    width:40%; 
+    display:inline-block;
+    vertical-align:top;
+    padding-top:2%;
+    padding-left:10%;
+}
+h3{
+    width:48%; 
+    display:inline-block;
+    vertical-align:top;
+    text-align:center;
+}
+.left{
+    margin-left:2%;
+}
+.green{
+    color:#419641;
+}
+.red{
+    color:#c12e2a;
+}
+.blue{
+    color:#2aabd2;
+}
+.orange{
+    color:#eb9316;
+}
+#contentEntity{
+    border: 1px solid #419641;
+}
+#contentDoctrine{
+    border: 1px solid #c12e2a;
+}
+#contentSerializer{
+    border: 1px solid #2aabd2;
+}
+#contentEmber{
+    border: 1px solid #eb9316;
+}
+.border{
+    width:48%; 
+    display:inline-block; 
+    vertical-align:top;
+    border-radius: 8px 8px 8px 8px;
+    -moz-border-radius: 8px 8px 8px 8px;
+    -webkit-border-radius: 8px 8px 8px 8px;
+}
+#copyButtons{
+    text-align: center;
+    padding-top:2%;
+}
+.leftTd{
+    text-align: left;
+}
+.rightTd{
+    text-align: right;
+}
+footer{
+    text-align: center;
+    padding-top: 10%;
+}
+html, body {
+  height: 100%;
+}

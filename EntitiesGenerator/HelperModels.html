@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HTML helpers to generate symfony/ember models/doctrine/serializer</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="app.css">
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+    <body>
+        <div class="form">
+            <b>Global</b>
+            <table class="tableForm">
+                <tr>
+                    <td>Namespace :</td>
+                    <td><input type="text" id="namespace"></td>
+                </tr>
+                <tr>
+                    <td>Class :</td>
+                    <td><input type="text" id="className"></td>
+                </tr>
+                <tr>
+                    <td>Table :</td>
+                    <td><input type="text" id="table"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div class="form">
+            <b>Add attribute</b>
+            <table class="tableForm">
+                <tr>
+                    <td>Name :</td>
+                    <td><input type="text" id="attributeName"></td>
+                </tr>
+                <tr>
+                    <td>Type :</td>
+                    <td><input type="text" id="attributeType"></td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                    <td class="rightTd"><input class="btn btn-default btn-sm" type="button" id="attributeAdd" value="Add" onclick="Javascript:addAttribute()"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="form">
+            <b>Add relation</b>
+            <table class="tableForm">
+                <tr>
+                    <td>Name :</td>
+                    <td><input type="text" id="relationName"></td>
+                </tr>
+                <tr>
+                    <td>Entity :</td>
+                    <td><input type="text" id="relationEntity"></td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                    <td class="leftTd"><input class="btn btn-default btn-sm" type="button" id="add" value="OneToOne" onclick="Javascript:addRelation('OneToOne')">
+                    <input class="btn btn-default btn-sm" type="button" value="OneToMany" onclick="Javascript:addRelation('OneToMany')">
+                    <input class="btn btn-default btn-sm" type="button" value="ManyToOne" onclick="Javascript:addRelation('ManyToOne')">
+                    <input class="btn btn-default btn-sm" type="button" value="ManyToMany" onclick="Javascript:addRelation('ManyToMany')"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="copyButtons">
+            <input class="btn btn-default" type="button" value="Generate All" onclick="Javascript:generateEntity();generateDoctrine();generateSerializer();generateEmber();">
+            <input class="btn btn-success btn-sm" type="button" id="copyEntity" value="Copy Entity">
+            <input class="btn btn-danger btn-sm" type="button" id="copyDoctrine" value="Copy Doctrine">
+            <input class="btn btn-info btn-sm" type="button" id="copySerializer" value="Copy Serializer">
+            <input class="btn btn-warning btn-sm" type="button" id="copyEmber" value="Copy Ember">
+        </div>
+        <div class="data">
+            <b>Actuals attributes</b>
+            <table class="table" id="attributeTable">
+                <tr>
+                    <td><b>Name</b></td>
+                    <td><b>Type</b></td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            <br/>
+        </div>
+        <div class="data">
+            <b>Actuals relations</b>
+            <table class="table" id="relationTable">
+                <tr>
+                    <td><b>Name</b></td>
+                    <td><b>Entity</b></td>
+                    <td><b>Type</b></td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            <br/>
+        </div>
+        <div>
+            <h3 class="left green">Entity</h3>
+            <h3 class="red">Doctrine</h3>
+            <div id='contentEntity' contenteditable="true" class="border left"></div>
+            <div id='contentDoctrine' contenteditable="true" class="border"></div>
+            <h3 class="left blue">Serializer</h3>
+            <h3 class="orange">Ember</h3>
+            <div id='contentSerializer' contenteditable="true" class="border left"></div>
+            <div id='contentEmber' contenteditable="true" class="border"></div>
+        </div>
+    </body>
+    <footer>
+        <p>Created by <a href="mailto:antony.deveau@class-web.fr">antony.deveau@class-web.fr</a></p>
+    </footer>
+</html>
