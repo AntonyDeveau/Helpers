@@ -1,0 +1,74 @@
+    <html>
+    <head>
+    <script>
+    var text = '';
+
+    function editLine(line)
+    {
+        line = line.replace(/\t/g,',');
+
+		return '('+line+'),';
+    }
+
+    function addApostrophes(data)
+    {
+    	data = data.replace(/\,/,'');
+    	return ",'"+data+"'";
+    }
+
+    function addApostrophesWithoutComma(data)
+    {
+    	return "'"+data+"'";
+    }
+
+      var openFile = function(event) {
+        var input = event.target;
+
+        var reader = new FileReader();
+        reader.onload = function(){
+           text = reader.result;
+           text = text.replace(/--.*/gi,'');
+           text = text.replace(/SELECT.*/g,'');
+           text = text.replace(/SET.*/g,'');
+           text = text.replace(/CREATE (EXTENSION|SEQUENCE|TABLE|INDEX|UNIQUE)(.+\n{1})*/gi,'');
+           text = text.replace(/COMMENT.+/g,'');
+           text = text.replace(/ADD.+/g,'');
+           text = text.replace(/REVOKE.+/g,'');
+           text = text.replace(/GRANT.+/g,'');
+           text = text.replace(/ALTER TABLE.+/g,'');
+           text = text.replace(/COPY/g,'INSERT INTO');
+           text = text.replace(/FROM stdin;/g, 'VALUES');
+           text = text.replace(/\d.*/gi,editLine);
+           text = text.replace(/(,[a-z]+[^,|)]*)/gi,addApostrophes);
+           text = text.replace(/\\N/g,'NULL');
+           text = text.replace(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/g,addApostrophesWithoutComma);
+           text = text.replace(/\n\n\n\n/gi,'');
+           text = text.replace(/,\n+\\./g,';\n');
+           text = text.replace(/,,/g,',NULL,');
+           text = text.replace(/NULL,\)/g,'NULL)')
+           text = text.replace(/(05|06|07){1}(\d{8}|(\s\d{2}){4})/g,addApostrophesWithoutComma);
+           text = text.replace(/,'f'/g,',0');
+           text = text.replace(/,'t'/g,',1');
+           text = text.replace(/1,\)/g,'1)');
+           text = text.replace(/0,\)/g,'0)');
+      	   var node = document.getElementById('output');
+           node.innerText = text;
+        };
+        text = reader.readAsText(input.files[0]);
+      };
+    </script>
+    </head>
+    <body>
+    <div style="text-align: center">
+        <br>
+        <br>
+        Choisissez votre fichier SQL PG
+        <br>
+        <br>
+        <input type='file' accept='text/plain' onchange='openFile(event)'>
+    </div>
+    <br>
+    <div id='output'>
+    </div>
+    </body>
+    </html>
